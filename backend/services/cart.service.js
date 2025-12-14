@@ -52,5 +52,5 @@ export async function addItem(store, { userId, itemId, quantity }) {
 }
 
 export async function clearCart(store, userId) {
-  store.carts.set(userId, { userId, items: [], total: 0 });
+  store.carts.set(userId, { userId, items: [], subtotal: 0 });
 }
