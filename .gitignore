@@ -1,2 +1,7 @@
 # Ignore node_modules from backend
 backend/node_modules/
+
+
+# Environment variables
+.env
+.env.*
