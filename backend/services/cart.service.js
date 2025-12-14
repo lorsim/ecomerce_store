@@ -35,18 +35,18 @@ export async function addItem(store, { userId, itemId, quantity }) {
   );
   if (existingItemIndex) {
     existingItemIndex.quantity += quantity;
-    existingItemIndex.totalPrice =
+    existingItemIndex.subtotal =
       existingItemIndex.quantity * existingItemIndex.price;
   } else {
     cart.items.push({
       itemId,
       quantity,
       price: product.price,
-      totalPrice: product.price * quantity,
+      subtotal: product.price * quantity,
     });
   }
 
-  cart.subtotal = cart.items.reduce((sum, item) => sum + item.totalPrice, 0);
+  cart.subtotal = cart.items.reduce((sum, item) => sum + item.subtotal, 0);
 
   return cart;
 }
