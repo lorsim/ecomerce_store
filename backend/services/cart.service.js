@@ -4,7 +4,7 @@ export async function getCart(store, userId) {
   }
 
   if (!store.carts.has(userId)) {
-    store.carts.set(userId, { userId, items: [], total: 0 });
+    store.carts.set(userId, { userId, items: [], subtotal: 0 });
   }
   return store.carts.get(userId);
 }
@@ -33,9 +33,10 @@ export async function addItem(store, { userId, itemId, quantity }) {
     (item) => item.itemId === itemId
   );
   if (existingItemIndex >= 0) {
-    existingItemIndex.quantity += quantity;
-    existingItemIndex.subtotal =
-      existingItemIndex.quantity * existingItemIndex.price;
+    cart.items[existingItemIndex].quantity += quantity;
+    cart.items[existingItemIndex].subtotal =
+      cart.items[existingItemIndex].quantity *
+      cart.items[existingItemIndex].price;
   } else {
     cart.items.push({
       itemId,
@@ -45,7 +46,8 @@ export async function addItem(store, { userId, itemId, quantity }) {
     });
   }
 
-  cart.total = cart.items.reduce((sum, item) => sum + item.subtotal, 0);
+  cart.subtotal = cart.items.reduce((sum, item) => sum + item.subtotal, 0);
+  store.carts.set(userId, cart);
   return cart;
 }
 
