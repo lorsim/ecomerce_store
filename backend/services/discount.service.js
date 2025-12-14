@@ -17,6 +17,8 @@ export async function generateDiscount(subtotal) {
 
 export async function markDiscountAsUsed(store, orderId, amount) {
   const active = store.discount.active;
+  if (!active) throw new Error("No active discount to mark as used");
+
   active.isUsed = true;
   active.usedByOrderId = orderId;
   active.discountAmount = amount;

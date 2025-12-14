@@ -6,7 +6,7 @@ export async function placeOrder(req, res) {
     const { userId, discountCode } = req.body || {};
 
     const result = await checkout(store, {
-      userId: String(userId || ""),
+      userId: String(userId || "").trim(),
       discountCode: discountCode ? String(discountCode) : undefined,
     });
 

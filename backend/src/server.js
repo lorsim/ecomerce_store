@@ -8,7 +8,7 @@ import adminRoutes from "./routes/admin.routes.js";
 const app = express();
 app.use(express.json());
 
-const nth = Number(process.env.NTH || 5);
+const nth = Number(process.env.NTH || 1);
 const store = createStore({ nth });
 app.locals.store = store;
 
