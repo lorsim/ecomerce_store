@@ -15,7 +15,6 @@ export async function addItem(req, res) {
   try {
     const store = req.app.locals.store;
     const { userId, itemId, quantity } = req.body || {};
-
     const cart = await cartService.addItem(store, {
       userId: String(userId || ""),
       itemId: String(itemId || ""),

@@ -4,9 +4,8 @@ export async function getCart(store, userId) {
   }
 
   if (!store.carts.has(userId)) {
-    store.carts.set(userId, { userId, items: [], subtotal: 0 });
+    store.carts.set(userId, { userId, items: [], total: 0 });
   }
-
   return store.carts.get(userId);
 }
 
@@ -19,7 +18,7 @@ export async function addItem(store, { userId, itemId, quantity }) {
     throw new Error("Item ID is required to add item to cart");
   }
 
-  if (!Number.isInteger(quantity) || quantity < 1) {
+  if (!Number.isInteger(quantity) || Number(quantity) < 1) {
     throw new Error("Quantity must be an integer >= 1");
   }
 
@@ -33,7 +32,7 @@ export async function addItem(store, { userId, itemId, quantity }) {
   const existingItemIndex = cart.items.findIndex(
     (item) => item.itemId === itemId
   );
-  if (existingItemIndex) {
+  if (existingItemIndex >= 0) {
     existingItemIndex.quantity += quantity;
     existingItemIndex.subtotal =
       existingItemIndex.quantity * existingItemIndex.price;
@@ -46,11 +45,10 @@ export async function addItem(store, { userId, itemId, quantity }) {
     });
   }
 
-  cart.subtotal = cart.items.reduce((sum, item) => sum + item.subtotal, 0);
-
+  cart.total = cart.items.reduce((sum, item) => sum + item.subtotal, 0);
   return cart;
 }
 
 export async function clearCart(store, userId) {
-  store.carts.set(userId, { userId, items: [], subtotal: 0 });
+  store.carts.set(userId, { userId, items: [], total: 0 });
 }

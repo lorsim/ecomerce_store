@@ -8,7 +8,8 @@ import adminRoutes from "./routes/admin.routes.js";
 const app = express();
 app.use(express.json());
 
-const store = createStore({ nth: 5 });
+const nth = Number(process.env.NTH || 5);
+const store = createStore({ nth });
 app.locals.store = store;
 
 app.use("/api/cart", cartRoutes);
