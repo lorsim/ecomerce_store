@@ -2,7 +2,7 @@ import { useState } from "react";
 import { checkout } from "../api";
 
 export default function CheckoutPage() {
-  const [userId, setUserId] = useState("u1");
+  const [userId, setUserId] = useState("John Doe");
   const [discountCode, setDiscountCode] = useState("");
   const [result, setResult] = useState(null);
   const [error, setError] = useState("");

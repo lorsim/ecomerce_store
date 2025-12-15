@@ -4,7 +4,7 @@ import ProductList from "../components/ProductList";
 import Cart from "../components/Cart";
 
 export default function ShopPage() {
-  const [userId, setUserId] = useState("u1");
+  const [userId, setUserId] = useState("John Doe");
   const cleanUserId = userId.trim();
 
   const [cart, setCart] = useState(null);

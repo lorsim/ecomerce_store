@@ -54,7 +54,18 @@ export default function ProductList({ userId, onAdded }) {
         ))}
       </div>
 
-      {status && <div style={{ marginTop: 10, fontSize: 12 }}>{status}</div>}
+      <div
+        style={{
+            marginTop: 10,
+            fontSize: 12,
+            minHeight: 18,          // reserves space so layout doesn't jump
+            opacity: status ? 1 : 0, // hides text but keeps spacing
+            transition: "opacity 120ms ease",
+        }}
+        >
+        {status || "placeholder"}
+     </div>
+
     </>
   );
 }
