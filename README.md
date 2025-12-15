@@ -40,9 +40,9 @@ Total discount amount applied
 
 ## Project Structure
 
-backend
+- backend
 – API server (cart, checkout, admin)
-frontend
+- frontend
 – React UI to demonstrate functionality
 
 ## Running the Backend
@@ -67,14 +67,14 @@ UI runs on http://localhost:5173
 
 ## Running Tests
 
-## Backend
+### Backend
 
 ```bash
 cd backend
 npm test
 ```
 
-## Frontend
+### Frontend
 
 ```bash
 cd frontend
